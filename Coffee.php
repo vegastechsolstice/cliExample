@@ -142,7 +142,7 @@ class Coffee
     /**
      * @return bool
      */
-    public function isSugar(): bool
+    public function hasSugar(): bool
     {
         return $this->sugar;
     }
@@ -150,8 +150,21 @@ class Coffee
     /**
      * @return bool
      */
-    public function isMilk(): bool
+    public function hasMilk(): bool
     {
         return $this->milk;
+    }
+
+    /**
+     * @param bool $booleanValue
+     * @return string
+     */
+    static public function toString(bool $booleanValue): string
+    {
+        if ($booleanValue === true) {
+            return 'Yes';
+        }
+
+        return 'No';
     }
 }
