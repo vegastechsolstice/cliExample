@@ -1,8 +1,7 @@
 <?php
 
 namespace App;
-//curl -X POST "http://developer-test.engagednation.com/api/coffee/type
-//http://developer-test.engagednation.com/api/coffee/types/J
+
 require_once 'Coffee.php';
 
 /**
@@ -27,5 +26,22 @@ class CoffeeSerializer
     public function deserializeCoffee(array $fields): Coffee
     {
         return new Coffee($fields[1], $fields[2], $fields[3], $fields[4], $fields[5], $fields[0]);
+    }
+
+    /**
+     * @param string $coffeeJson
+     * @return array
+     */
+    public function deserializeCoffees(string $coffeeJson): array
+    {
+        $coffeeArray = json_decode($coffeeJson);
+        $coffees     = [];
+
+        /** @var Coffee $coffee */
+        foreach ($coffeeArray->data as $coffeeData) {
+            $coffees[] = new Coffee($coffeeData->name, $coffeeData->size, $coffeeData->syrup, $coffeeData->sugar, $coffeeData->milk, $coffeeData->id);
+        }
+
+        return $coffees;
     }
 }

@@ -27,6 +27,7 @@ class Coffee
      * @var int
      */
     private $size;
+
     /**
      * @var string
      */
@@ -104,5 +105,53 @@ class Coffee
             "id"             => $this->id,
             "applicant_name" => 'Alex Solis',
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSize(): int
+    {
+        return $this->size;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSyrup(): string
+    {
+        return $this->syrup;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSugar(): bool
+    {
+        return $this->sugar;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMilk(): bool
+    {
+        return $this->milk;
     }
 }

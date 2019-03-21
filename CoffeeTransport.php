@@ -3,6 +3,7 @@
 namespace App;
 
 require_once 'Coffee.php';
+require_once 'CoffeeSerializer.php';
 
 /**
  * Class CoffeeTransport
@@ -10,6 +11,7 @@ require_once 'Coffee.php';
 class CoffeeTransport
 {
     private const TARGET_URL = 'http://developer-test.engagednation.com/api/coffee/type';
+    private const SOURCE_URL = 'http://developer-test.engagednation.com/api/coffee/types/Alex Solis';
 
     /**
      * @var resource
@@ -27,6 +29,23 @@ class CoffeeTransport
     public function __construct()
     {
         $this->coffeeSerializer = new CoffeeSerializer();
+    }
+
+    /**
+     * @return bool|string
+     */
+    public function getCoffees()
+    {
+        $this->ch = curl_init();
+        curl_setopt($this->ch, CURLOPT_URL, self::SOURCE_URL);
+        curl_setopt($this->ch, CURLOPT_HEADER, 0);
+        curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true );
+
+        $response = curl_exec($this->ch);
+
+        curl_close($this->ch);
+
+        return $response;
     }
 
     /**
